@@ -8,14 +8,14 @@ public class Main {
         Scanner in = new Scanner(System.in);
         try {
             int x = input();
-            System.out.println(search(arr, x));
-        } catch (InvalidNumber | NonExistentNumber | NotNumberException e) {
+            System.out.println("Ближайшее меньшее число: " + search(arr, x));
+        } catch (InvalidNumber | NonExistentNumber e) {
             System.out.println(e.getMessage());
         }
 
     }
 
-    private static int search(int[] arr, int findValue) throws InvalidNumber, NonExistentNumber, NotNumberException {
+    private static int search(int[] arr, int findValue) throws InvalidNumber, NonExistentNumber {
         if (findValue < 0) throw new InvalidNumber("A negative number");
         if (findValue <= arr[0]) throw new NonExistentNumber("A non-existent number");
         int result = -1;
@@ -35,12 +35,11 @@ public class Main {
         int n = 0;
         boolean flag = false;
         while(!flag){
-            try{
+            try {
                 str = sc.nextLine();
                 n = Integer.parseInt(str);
                 flag = true;
-            }
-            catch(NumberFormatException e){
+            } catch(NumberFormatException e) {
                 System.out.println("It`s not number");
             }
         }
