@@ -12,12 +12,11 @@ public class Main {
         } catch (InvalidNumber | NonExistentNumber e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     private static int search(int[] arr, int findValue) throws InvalidNumber, NonExistentNumber {
-        if (findValue < 0) throw new InvalidNumber("A negative number");
-        if (findValue <= arr[0]) throw new NonExistentNumber("A non-existent number");
+        if (findValue < 0) throw new InvalidNumber("Вы ввели отрицаельное, ожидается положительное число");
+        if (findValue <= arr[0]) throw new NonExistentNumber("Такого ближайшего меньшего числа нет");
         int result = -1;
         if (findValue > arr[arr.length-1]) return arr[arr.length-1];
         for (int i = 0; i < arr.length; i++) {
