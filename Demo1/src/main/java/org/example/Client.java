@@ -9,9 +9,9 @@ public class Client extends Person {
     }
 
     public Client(String name, Gender gender, Discount discount) {
-        this.name = name;
-        this.gender = gender;
+        this(name, gender);
         this.discount = discount;
     }
+
 
 }

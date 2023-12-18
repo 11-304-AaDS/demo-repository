@@ -16,8 +16,8 @@ public class LinkedList implements ILinkedList{
 
     @Override
     public int next() {
-        int r = current.value;
         current = current.next;
+        int r = current.value;
         return r;
     }
 }
