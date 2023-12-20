@@ -5,10 +5,13 @@ public class DoubleLinkedList implements IStage{
     private Node current;
 
     public DoubleLinkedList() {
-        current = new Node(1);
+        Node root = new Node(1);
+        current = root;
         for (int i = 2; i <= 10; i++) {
-
+            current.next = new Node(i);
+            current = current.next;
         }
+        current.next = root;
     }
 
     @Override

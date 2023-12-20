@@ -9,7 +9,7 @@ public class Stroika {
     private StroikaStatus stroikaStatus;
     private Stroika number;
 
-    public Stroika(Roof roof, Basement basement, Walls walls, Otdelka otdelka, StroikaStatus stroikaStatus, Stroika number) {
+    public Stroika(Roof roof, Basement basement, Walls walls, Otdelka otdelka, StroikaStatus stroikaStatus, int number) {
         this.roof = roof;
         this.basement = basement;
         this.walls = walls;
