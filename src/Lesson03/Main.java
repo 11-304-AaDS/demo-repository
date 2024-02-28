@@ -10,6 +10,8 @@ public class Main {
         queue.push(12);
         queue.push(13);
         queue.push(14);
+        System.out.println("Вывод исходной очереди");
+        output(queue);
 
         //удаляет первое значение (10)
         queue.pop();
@@ -17,6 +19,8 @@ public class Main {
         //добавляет 15 в конец очереди
         queue.push(15);
 
+        System.out.println("Вывод очереди, где удалили 10 и добавили 15");
+        output(queue);
         //для наглядности, что началом очереди стало 11, выводит, что следующим удалится оно
         System.out.println("Следующим будет удалено значение: " + queue.peek());
 
@@ -25,10 +29,17 @@ public class Main {
         queue.pop();
         queue.pop();
         queue.pop();
+        System.out.println("Вывод очереди, где удалены первые 5 элементов");
+        output(queue);
+
         //демонстрирует, что следующим будет удалено 15
         System.out.println("Следующим будет удалено значение: " + queue.peek());
         queue.pop();
 
+        output(queue);
+    }
+
+    public static void output(Queue queue){
         for (int i = 0; i < 5; i++) {
             int i1 = queue.array[i];
             System.out.println(i1);
