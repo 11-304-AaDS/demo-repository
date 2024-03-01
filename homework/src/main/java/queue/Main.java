@@ -12,6 +12,9 @@ public class Main {
         System.out.println(queue.isEmpty());
         queue.pop();
         queue.pop();
+        queue.pop();
+        queue.pop();
+        queue.pop();
         queue.push(124);
         queue.push(613);
         System.out.println(queue.peek());

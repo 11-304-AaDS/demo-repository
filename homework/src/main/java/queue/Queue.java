@@ -35,6 +35,12 @@ public class Queue <T> implements QueueInterface <T>{
         T oldTop = top;
         for (int i = 0; i < array.length; i++){
             if (array[i] == top){
+                if (i == array.length-1){
+                    top = null;
+                    array[i] = null;
+                    end = null;
+                    break;
+                }
                 top = (T) array[i+1];
                 array[i] = null;
                 break;
