@@ -9,21 +9,28 @@ public class Main {
         queue.push(4);
         queue.push(5);
         System.out.println(queue);
-        queue.pop();
+        System.out.println("Peek:" + queue.peek());
+        System.out.println("Pop: " + queue.pop());
         System.out.println(queue);
-        queue.pop();
+        queue.push(7);
+        System.out.println("Pop: " + queue.pop());
         System.out.println(queue);
-        queue.pop();
+        System.out.println("Pop: " + queue.pop());
         System.out.println(queue);
-        queue.pop();
+        System.out.println("Pop: " + queue.pop());
         System.out.println(queue);
-        queue.push(1);
+        System.out.println("Pop: " + queue.pop());
         System.out.println(queue);
-        System.out.println(queue.peek());
-        queue.pop();
+        System.out.println("......");
+        queue.push(10);
+        queue.push(23);
         System.out.println(queue);
-        queue.pop();
+        System.out.println("Pop: " + queue.pop());
         System.out.println(queue);
-        System.out.println(queue.isEmpty());
+        System.out.println("Pop: " + queue.pop());
+        System.out.println(queue);
+        System.out.println("Pop: " + queue.pop());
+        System.out.println(queue);
+        System.out.println("Empty: " + queue.isEmpty());
     }
 }

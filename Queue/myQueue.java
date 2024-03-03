@@ -30,13 +30,13 @@ public class myQueue<T> {
         } else {
             T temp = (T) array[top];
             array[top] = null;
-            capacity--;
             if (capacity == 0) {
                 top = -1;
                 end = -1;
                 return temp;
             }
             top = (top + 1) % array.length;
+            capacity--;
             return temp;
         }
     }
