@@ -1,10 +1,10 @@
 package ru.itis.inf304.lab4;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class Queue<T> implements Iqueue<T>{
     private int size;
-    private int countpop;
     private int indextop;
     private int indexend;
     private final int capacity;
@@ -46,12 +46,14 @@ public class Queue<T> implements Iqueue<T>{
 
     @Override
     public T pop() {
+        if (isEmpty()){
+            throw new NoSuchElementException();
+        }
         int temp = indextop;
         indextop = (indextop + 1) % capacity;
         size--;
         T t = (T) array[temp];
         array[temp] = null;
-        countpop++;
         return t;
     }
     @Override
