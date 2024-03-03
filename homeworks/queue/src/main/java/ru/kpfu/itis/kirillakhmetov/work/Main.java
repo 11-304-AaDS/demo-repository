@@ -8,7 +8,6 @@ public class Main {
         queue.push(5);
         queue.push(4);
         queue.push(9);
-        System.out.println("Empty?: " + queue.isEmpty());
         System.out.println("First in queue: " + queue.peek());
         System.out.println("Pop: " + queue.pop());
         queue.push(13);
@@ -19,6 +18,10 @@ public class Main {
         System.out.println("-----");
         queue.push(4);
         queue.push(15);
-        System.out.println("Peek: " + queue.peek());
+        System.out.println("Pop: " + queue.pop());
+        System.out.println("Pop: " + queue.pop());
+        System.out.println("Pop: " + queue.pop());
+        System.out.println("Pop: " + queue.pop());
+        System.out.println("Empty?: " + queue.isEmpty());
     }
 }

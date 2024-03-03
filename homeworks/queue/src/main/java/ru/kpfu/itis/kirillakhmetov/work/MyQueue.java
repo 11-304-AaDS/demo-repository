@@ -1,42 +1,42 @@
 package ru.kpfu.itis.kirillakhmetov.work;
 
-@SuppressWarnings("unchecked")
 public class MyQueue<T> {
     private final T[] queue;
-    private final int size;
-    private int capacity = 0;
+    private final int capacity;
+    private int size = 0;
     private int top = -1;
     private int end = -1;
-
-    public MyQueue(int size) {
-        this.size = size;
-        queue = (T[]) new Object[size];
+    
+    public MyQueue(int capacity) {
+        this.capacity = capacity;
+        //noinspection unchecked
+        queue = (T[]) new Object[capacity];
     }
 
     public void push(T element) {
-        if (((end + 1) % size) == top) {
+        if (size == capacity) {
             System.out.println("Error: The queue is completely full");
         } else {
             if (top == -1) {
-                top = 0;
+                top++;
             }
-            end = (end + 1) % size;
+            end = (++end) % capacity;
             queue[end] = element;
-            capacity++;
+            size++;
         }
 
     }
     public T pop() {
         if (!isEmpty()) {
             T element = queue[top];
-            top = (top + 1) % size;
-            capacity--;
+            top = (++top) % capacity;
+            size--;
             return element;
         }
         return null;
     }
     public boolean isEmpty() {
-        return capacity == 0;
+        return size == 0;
     }
     public T peek() {
         if (!isEmpty()) {
