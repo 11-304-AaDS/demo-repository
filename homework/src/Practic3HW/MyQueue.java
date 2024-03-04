@@ -1,3 +1,5 @@
+package Practic3HW;
+
 public class MyQueue<T> {
     private int size;
     private int last = -1;

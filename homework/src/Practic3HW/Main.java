@@ -1,3 +1,5 @@
+package Practic3HW;
+
 public class Main {
     public static void main(String[] args) {
         MyQueue<Integer> queue = new MyQueue<>();
