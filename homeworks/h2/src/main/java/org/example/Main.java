@@ -10,6 +10,8 @@ public class Main {
         deque.push(3);
         deque.push(4);
 
+        System.out.println(deque.peek());
+
         System.out.println(deque.pop());
         System.out.println(deque.pop());
         System.out.println(deque.pop());
@@ -23,8 +25,6 @@ public class Main {
         System.out.println(deque.pop());
         System.out.println(deque.pop());
         System.out.println(deque.isEmpty());
-
-
 
     }
 }

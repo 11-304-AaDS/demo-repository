@@ -15,7 +15,7 @@ public class DequeOnTwoStack {
     }
 
     public Integer pop(){
-        if (stack1.isEmpty() && stack2.isEmpty()) throw new EmptyStackException();
+        if (stack1.isEmpty() & stack2.isEmpty()) throw new EmptyStackException();
         if (stack2.isEmpty()) {
             while (!stack1.isEmpty()) {
                 stack2.push(stack1.pop());
@@ -25,10 +25,15 @@ public class DequeOnTwoStack {
     }
 
     public boolean isEmpty() {
-        return stack2.isEmpty();
+        return stack1.isEmpty() & stack2.isEmpty();
     }
     
     public Integer peek() {
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
         if (stack2.isEmpty()) throw new EmptyStackException();
         return stack2.peek();
     }
