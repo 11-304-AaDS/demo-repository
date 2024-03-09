@@ -3,18 +3,18 @@ package org.example;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-public class DequeOnTwoStack {
+public class DequeOnTwoStack<T> {
 
-    Stack<Integer> stack1 = new Stack<>();
-    Stack<Integer> stack2 = new Stack<>();
+    Stack<T> stack1 = new Stack<>();
+    Stack<T> stack2 = new Stack<>();
 
     public DequeOnTwoStack() {}
 
-    public void push(Integer value){
+    public void push(T value){
         stack1.push(value);
     }
 
-    public Integer pop(){
+    public T pop(){
         if (stack1.isEmpty() & stack2.isEmpty()) throw new EmptyStackException();
         if (stack2.isEmpty()) {
             while (!stack1.isEmpty()) {
@@ -28,7 +28,7 @@ public class DequeOnTwoStack {
         return stack1.isEmpty() & stack2.isEmpty();
     }
     
-    public Integer peek() {
+    public T peek() {
         if (stack2.isEmpty()) {
             while (!stack1.isEmpty()) {
                 stack2.push(stack1.pop());
