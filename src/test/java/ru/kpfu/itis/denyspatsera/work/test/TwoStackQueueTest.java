@@ -6,7 +6,7 @@ import ru.kpfu.itis.denyspatsera.work.TwoStackQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TwoStackQueueTest {
+class TwoStackQueueTest {
 
     private TwoStackQueue<Integer> queue;
 
@@ -63,15 +63,11 @@ public class TwoStackQueueTest {
 
     @Test
     void testExceptionOnPopWhenEmpty() {
-        assertThrows(IllegalStateException.class, () -> {
-            queue.pop();
-        });
+        assertThrows(IllegalStateException.class, () -> queue.pop());
     }
 
     @Test
     void testExceptionOnPeekWhenEmpty() {
-        assertThrows(IllegalStateException.class, () -> {
-            queue.peek();
-        });
+        assertThrows(IllegalStateException.class, () -> queue.peek());
     }
 }
