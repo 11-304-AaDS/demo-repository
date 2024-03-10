@@ -5,3 +5,15 @@
 Queue/Main.java,d\3\d341bc156b1f31c2d27797987ff07c466ae6f268
 @
 Queue/Queue.java,5\0\500bf24ecbac1f37d0411e444e7c62c29237648d
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+w
+G.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,b\4\b4a0b63ce8560bbc5de0f9995c20cc861dc2adb3
+Å
+Q.idea/sonarlint/securityhotspotstore/5/0/500bf24ecbac1f37d0411e444e7c62c29237648d,9\0\904e07125ee0ecbc0ebc8e94633aa598a788020e
+Å
+Q.idea/sonarlint/securityhotspotstore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d,1\0\10a03f31c4dce92cb371e761ce9429428bb6c176
+Å
+Q.idea/sonarlint/securityhotspotstore/d/3/d341bc156b1f31c2d27797987ff07c466ae6f268,f\8\f8373182f332e847a09837818a121e1a6ce21a4e
