@@ -1,4 +1,4 @@
-package ru.itis.inf304;
+package ru.itis.AaDS.queue;
 
 public class Main {
     public static void main(String[] args) {
