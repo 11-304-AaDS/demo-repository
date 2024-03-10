@@ -1,4 +1,4 @@
-package src.main.java.ru.kpfu.itis.denyspatsera.work;
+package ru.kpfu.itis.denyspatsera.work;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;

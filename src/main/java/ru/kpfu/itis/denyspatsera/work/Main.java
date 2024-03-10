@@ -1,4 +1,4 @@
-package src.main.java.ru.kpfu.itis.denyspatsera.work;
+package ru.kpfu.itis.denyspatsera.work;
 
 public class Main {
 
