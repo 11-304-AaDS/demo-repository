@@ -9,30 +9,30 @@ public class Main {
         queue.push(1);
         queue.push(2);
 
-        System.out.println(queue);
+        System.out.println(queue.toString());
 
         System.out.println(queue.empty());
 
         System.out.println(queue.peek());
 
         System.out.println(queue.pop());
-        System.out.println(queue);
+        System.out.println(queue.toString());
         System.out.println(queue.pop());
-        System.out.println(queue);
+        System.out.println(queue.toString());
         System.out.println(queue.pop());
-        System.out.println(queue);
+        System.out.println(queue.toString());
         System.out.println(queue.pop());
 
         System.out.println(queue.empty());
-        System.out.println(queue);
+        System.out.println(queue.toString());
 
         queue.push(8);
-        System.out.println(queue);
+        System.out.println(queue.toString());
         queue.push(9);
-        System.out.println(queue);
+        System.out.println(queue.toString());
         queue.push(10);
 
-        System.out.println(queue);
+        System.out.println(queue.toString());
         System.out.println(queue.empty());
 
     }
