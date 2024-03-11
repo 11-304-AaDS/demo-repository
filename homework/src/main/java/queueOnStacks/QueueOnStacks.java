@@ -1,48 +1,46 @@
 package queueOnStacks;
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Stack;
 
 public class QueueOnStacks <T> implements queueOnStacksInterface <T> {
 
-    Stack<T> current;
-    Stack<T> tmp;
+    Stack<T> stackIn;
+    Stack<T> stackOut;
 
     public QueueOnStacks() {
-        current = new Stack<>();
-        tmp = new Stack<>();
+        stackIn = new Stack<>();
+        stackOut = new Stack<>();
     }
 
 
     @Override
     public void push(T x) {
-        current.push(x);
+        stackIn.push(x);
     }
 
     @Override
     public T peek() {
-        if (!tmp.isEmpty()) {
-            return tmp.peek();
+        if (!stackOut.isEmpty()) {
+            return stackOut.peek();
         }
-        while (!current.isEmpty()) {
-            tmp.push(current.pop());
+        while (!stackIn.isEmpty()) {
+            stackOut.push(stackIn.pop());
         }
-        return tmp.peek();
+        return stackOut.peek();
     }
     public boolean empty() {
-        if (!tmp.isEmpty()) {
-            return tmp.isEmpty();
+        if (!stackOut.isEmpty()) {
+            return stackOut.isEmpty();
         }
-        return current.isEmpty();
+        return stackIn.isEmpty();
     }
     public T pop() {
-        if (!tmp.isEmpty()) {
-            return tmp.pop();
+        if (!stackOut.isEmpty()) {
+            return stackOut.pop();
         }
-        while (!current.isEmpty()) {
-            tmp.push(current.pop());
+        while (!stackIn.isEmpty()) {
+            stackOut.push(stackIn.pop());
         }
-        return tmp.pop();
+        return stackOut.pop();
     }
 }
