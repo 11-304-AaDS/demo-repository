@@ -6,23 +6,11 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        File myFile = new File("myFile.txt");
-        myFile.createNewFile();
+        TestGenerator.testGenerate(100, 10);
 
-        try {
-            FileWriter writer = new FileWriter("myFile.txt");
-            for (int i = 0; i < 10; i++) {
-                int[] array = new int[100];
-                for (int j = 0; j < 100; j++) {
-                    array[j] = (int) (Math.random() * 100);
-                    writer.write(array[j] + " ");
-                }
-                writer.write("\n");
-            }
-            writer.flush();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        double srznach = 0;
+        //double maxTime = -100000;
+        //double minTime =  100000;
 
         try {
             FileReader fr = new FileReader("myFile.txt");
@@ -34,19 +22,24 @@ public class Main {
                 for (int i = 0; i < str.length; i++) {
                     array[i] = Integer.parseInt(str[i]);
                 }
-
-                float start = System.nanoTime();
+                //
+                double start = System.currentTimeMillis();
                 StoogSort.sort(array, 0, array.length-1);
-                float end = System.nanoTime();
+                double end = System.currentTimeMillis();
+                //
 
-                System.out.println(end + " " + start);
+                System.out.println(((end - start) ) + " секунд");
+                //srznach += end-start;
+                //minTime = Math.min(minTime, (end - start) );
+                //maxTime = Math.max(maxTime, (end - start) );
 
-                System.out.println(Arrays.toString(array));
+                //System.out.println(Arrays.toString(array));
                 line = reader.readLine();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
+        //System.out.println(srznach / 100);
     }
 }
