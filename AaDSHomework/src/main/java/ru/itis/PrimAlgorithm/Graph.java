@@ -1,6 +1,7 @@
 package ru.itis.PrimAlgorithm;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 // класс графа
@@ -14,9 +15,6 @@ public class Graph {
         this.edges = edges;
         for (Edge i : edges) generalWeight += i.weight;
     }
-
-    // что попробовать изменить: заменить массивы, в которых только удаляем, на LinkedList;
-    // заменить примитивы в ребрах на Integer.
 
     PrimResult primAlgorithm() {
 
@@ -73,12 +71,12 @@ public class Graph {
             if (vertexesUsed.contains(edgesNotUsed.get(minE).v1))
             {
                 vertexesUsed.add(edgesNotUsed.get(minE).v2);
-                vertexesNotUsed.remove((Integer) edgesNotUsed.get(minE).v2);
+                vertexesNotUsed.remove(edgesNotUsed.get(minE).v2);
             }
             else
             {
                 vertexesUsed.add(edgesNotUsed.get(minE).v1);
-                vertexesNotUsed.remove((Integer) edgesNotUsed.get(minE).v1);
+                vertexesNotUsed.remove(edgesNotUsed.get(minE).v1);
             }
 
             //заносим новое ребро в дерево и удаляем его из списка неиспользованных
