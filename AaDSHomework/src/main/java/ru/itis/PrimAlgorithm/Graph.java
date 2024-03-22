@@ -18,7 +18,7 @@ public class Graph {
     // что попробовать изменить: заменить массивы, в которых только удаляем, на LinkedList;
     // заменить примитивы в ребрах на Integer.
 
-    PrimResult primAlgorithm() throws IndexOutOfBoundsException {
+    PrimResult primAlgorithm() {
 
         // начнем замерять время и добавим счетчик итераций цикла
         long before = System.currentTimeMillis();
