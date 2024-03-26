@@ -1,101 +1,96 @@
 package ru.itis.PrimAlgorithm;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 // класс графа
 public class Graph {
-    private final List<Integer> vertexes; // множество вершин
+    private final int vertexesCount; // множество вершин
     private final List<Edge> edges; // множество ребер
-    private int generalWeight; // общий вес графа
 
-    Graph(List<Integer> vertexes, List<Edge> edges) {
-        this.vertexes = vertexes;
+    Graph(int vertexesCount, List<Edge> edges) {
+        this.vertexesCount = vertexesCount;
         this.edges = edges;
-        for (Edge i : edges) generalWeight += i.weight;
     }
 
-    PrimResult primAlgorithm() {
+    static List<Edge>[] fillAdjacencyList(int V, List<Edge> allEdges) {
+        List<Edge>[] adjList = new List[V];
+        for (int i = 0; i < V; i++) {
+            adjList[i] = new ArrayList<>();
+        }
 
-        // начнем замерять время и добавим счетчик итераций цикла
+        for (Edge edge : allEdges) {
+            adjList[edge.v1].add(edge);
+        }
+
+        return adjList;
+    }
+
+    PrimResult primMST() {
+
         long before = System.currentTimeMillis();
-        long counterIterations = 0;
+        int countIterations = 0;
 
-        // минимальный остов
-        List<Edge> minOstovEdges = new ArrayList<>();
+        List<Edge>[] adjList = fillAdjacencyList(vertexesCount, edges);
+        countIterations+= edges.size() + vertexesCount;
 
-        //неиспользованные ребра
-        List<Edge> edgesNotUsed = new ArrayList<>();
-        for (Edge e : edges) {
-            edgesNotUsed.add(new Edge(e.v1, e.v2, e.weight));
-            counterIterations++;
-        }
+        boolean[] inMST = new boolean[vertexesCount];
+        PriorityQueue<Edge> pq = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+        List<Edge> mstEdges = new ArrayList<>();
 
-        //использованные вершины
-        List<Integer> vertexesUsed = new ArrayList<>();
+        // добавим любой произвольный узел
+        int source = 0;
+        inMST[source] = true;
+        pq.addAll(adjList[source]);
 
-        //неиспользованные вершины
-        List<Integer> vertexesNotUsed = new ArrayList<>();
-        for (int i = 1; i <= vertexes.size(); i++, counterIterations++)
-            vertexesNotUsed.add(i);
+        while (!pq.isEmpty()) {
+            Edge edge = pq.poll();
+            if (inMST[edge.v2]) continue;
 
-        //выберем первую вершину как начальную
-        vertexesUsed.add(1);
-        vertexesNotUsed.remove((Integer) 1);
+            inMST[edge.v2] = true;
+            mstEdges.add(new Edge(edge.v1, edge.v2, edge.weight));
 
-        // сам алгоритм
-        while (!vertexesNotUsed.isEmpty())
-        {
-            int minE = -1; //номер наименьшего ребра
-
-            //поиск наименьшего ребра
-            for (int i = 0; i < edgesNotUsed.size(); i++, counterIterations++)
-            {
-
-                // проверка, что одна из вершин ребра уже использована, а другая нет
-                if ((vertexesUsed.contains(edgesNotUsed.get(i).v1)) && (!vertexesUsed.contains(edgesNotUsed.get(i).v2)) ||
-                        (vertexesUsed.contains(edgesNotUsed.get(i).v2)) && (!vertexesUsed.contains(edgesNotUsed.get(i).v1)))
-                {
-                    if (minE != -1)
-                    {
-                        if (edgesNotUsed.get(i).weight < edgesNotUsed.get(minE).weight)
-                            minE = i;
-                    }
-                    else
-                        minE = i;
+            for (Edge nextEdge : adjList[edge.v2]) {
+                if (!inMST[nextEdge.v2]) {
+                    pq.add(nextEdge);
                 }
+                countIterations++;
             }
-
-            //заносим новую вершину в список использованных и удаляем ее из списка неиспользованных
-            if (vertexesUsed.contains(edgesNotUsed.get(minE).v1))
-            {
-                vertexesUsed.add(edgesNotUsed.get(minE).v2);
-                vertexesNotUsed.remove(edgesNotUsed.get(minE).v2);
-            }
-            else
-            {
-                vertexesUsed.add(edgesNotUsed.get(minE).v1);
-                vertexesNotUsed.remove(edgesNotUsed.get(minE).v1);
-            }
-
-            //заносим новое ребро в дерево и удаляем его из списка неиспользованных
-            minOstovEdges.add(edgesNotUsed.get(minE));
-            edgesNotUsed.remove(minE);
         }
 
-        // закончим подсчет времени
         long after = System.currentTimeMillis();
 
-        return new PrimResult(new Graph(vertexesUsed, minOstovEdges), vertexes.size(), edges.size(), after - before, counterIterations);
+        return new PrimResult(vertexesCount, edges.size(), after - before, countIterations);
     }
 
     @Override
     public String toString() {
         return "Graph{" +
-                "vertexes=" + vertexes +
-                ", edges=" + edges +
-                ", generalWeight=" + generalWeight +
-                '}';
+                "vertexesCount=" + vertexesCount +
+                ", edges=" + edges + "}";
     }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+    public static Graph generateGraphs(int countVert) {
+        List<Edge> edges = new ArrayList<>();
+        for (int i = 0; i < countVert - 1; i++) {
+            int countEdges = customRandom(1, countVert - i);
+            Set<Integer> vertex = new HashSet<>();
+            for (int j = 0; j < countEdges; j++) {
+                int addVertex = customRandom(i + 1, countVert);
+                vertex.add(addVertex);
+            }
+            for (Integer num : vertex) {
+                int weight = customRandom(1, 10);
+                edges.add(new Edge(i, num, weight));
+            }
+        }
+        return new Graph(countVert, edges);
+    }
+
+    public static int customRandom(int min, int max) {
+        return min + (int) (Math.random() * (max - min));
+    }
+
 }

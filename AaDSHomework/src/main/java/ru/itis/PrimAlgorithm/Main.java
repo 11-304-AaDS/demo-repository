@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        int countVertexes = 100;
-        int countTest = 10;
+    public static PrimResult[] primAlgorythmTest(int countVertexes, int countTest) throws IOException {
         TestGenerator.testGenerate(countVertexes, countTest);
-        List<Graph> graphs = new ArrayList<>(countTest);
+
+        PrimResult[] results = new PrimResult[countTest];
 
         try {
             FileReader fr = new FileReader("testFile.txt");
@@ -19,8 +18,6 @@ public class Main {
 
                 //создаем данные для графа
                 List<Edge> edges = new ArrayList<>();
-                List<Integer> vertexes = new ArrayList<>(countVertexes);
-                for (int k = 1; k <= countVertexes; k++) vertexes.add(k);
 
                 // создаем ребра
                 String[] line1 = reader.readLine().split(" ");
@@ -31,16 +28,11 @@ public class Main {
                     edges.add(new Edge(Integer.parseInt(line1[j]), Integer.parseInt(line2[j]), Integer.parseInt(line3[j])));
                 }
 
-                graphs.add(new Graph(vertexes, edges));
+                results[i] = new Graph(countVertexes, edges).primMST();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        for (Graph g : graphs) {
-            System.out.println(g);
-            g.primAlgorithm().print();
-            System.out.println();
-        }
+        return results;
     }
 }
