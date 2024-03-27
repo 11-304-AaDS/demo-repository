@@ -1,16 +1,20 @@
 package org.example;
 public class StoogSort {
-    public static void sort(int[] array, int low, int high) {
+    private static int count = 0;
+    public static int sort(int[] array, int low, int high) {
 
         //Сравниваем / меняем элементы на концах отрезка
         if (array[low] > array[high]) {
             int t = array[low];
             array[low] = array[high];
             array[high] = t;
+            count++;
         }
 
         //Меньше трёх?
-        if(low + 1 >= high) return;
+        if(low + 1 >= high) {
+            return count;
+        }
 
         // Если в массиве более двух элементов
         if (high - low + 1 > 2) {
@@ -26,6 +30,7 @@ public class StoogSort {
             // Снова рекурсивно сортируем первые 2/3 элемента
             sort(array, low, high - t);
         }
+        return count;
     }
 
 }

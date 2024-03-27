@@ -22,12 +22,11 @@ public class Main {
 
                 //
                 double start = System.currentTimeMillis();
-                StoogSort.sort(array, 0, array.length-1);
-                //int k = StoogeSortWithCountOperations.sort(array, 0, array.length-1);
+                int k = StoogSort.sort(array, 0, array.length-1);
                 double end = System.currentTimeMillis();
                 //
 
-                System.out.println(str.length + ": " + (end-start)  + " миллисекунд");
+                System.out.println(str.length + ": " + (end-start)  + " миллисекунд " + k + " операций");
 
                 line = reader.readLine();
             }
