@@ -1,12 +1,14 @@
 package ru.itis.PrimAlgorithm;
 
 public class PrimResult {
+    Graph mst;
     long countVertexes;
     long countEdges;
     long timeUsed;
     long numberOfIterations;
 
-    public PrimResult(long countVertexes, long countEdges, long timeUsed, long numberOfIterations) {
+    public PrimResult(Graph mst, long countVertexes, long countEdges, long timeUsed, long numberOfIterations) {
+        this.mst = mst;
         this.countVertexes = countVertexes;
         this.countEdges = countEdges;
         this.timeUsed = timeUsed;

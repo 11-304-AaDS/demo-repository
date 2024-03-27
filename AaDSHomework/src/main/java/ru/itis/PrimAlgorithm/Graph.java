@@ -59,7 +59,7 @@ public class Graph {
 
         long after = System.currentTimeMillis();
 
-        return new PrimResult(vertexesCount, edges.size(), after - before, countIterations);
+        return new PrimResult(new Graph(vertexesCount, mstEdges), vertexesCount, edges.size(), after - before, countIterations);
     }
 
     @Override
