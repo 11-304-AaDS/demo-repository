@@ -18,8 +18,8 @@ public class Program {
                 int from = random.nextInt(n); //вершина, от которой будет исходить дуга
                 int to = random.nextInt(n); //вершина, в которую входит дуга
                 //если вершина, в которую входят и выходят это одна вершина, а также если
-                //дуга из from в to приведёт к циклу, то to сгенерируется на другое число
-                while (to == j || isConnected(mas, from,to) || to == from) {
+                //дуга из from в to приведёт к циклу, то to и from сгенерируется на другое число
+                while (isConnected(mas, from,to) || to == from) {
                     to =  random.nextInt(n);
                     from =  random.nextInt(n);
                 }
@@ -31,25 +31,6 @@ public class Program {
             }
             writer.append("\n");
         }
-/*
-        BufferedReader reader = new BufferedReader(new FileReader("graph.txt"));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            if (line.contains(":")) {
-                System.out.println(line);
-            } else {
-                String[] a = line.split(";");
-                String[][] c = new String[a.length][2];
-                for (int i = 0; i < a.length; i++) {
-                    c[i] = a[i].split(" ");
-                }
-                System.out.println(Arrays.deepToString(c));
-            }
-        }
-        reader.close();
-
-
- */
 
     }
     public static boolean isConnected(int[][] mas, int from, int to) {
