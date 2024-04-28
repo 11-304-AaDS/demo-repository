@@ -2,7 +2,7 @@ package DoubleStack;
 
 public class Main {
     public static void main(String[] args) {
-        DoubleStackImpl<Integer> queue = new DoubleStack<>();
+        DoubleStack<Integer> queue = new DoubleStack<Integer>();
         queue.push(0);
         queue.push(1);
         queue.push(2);

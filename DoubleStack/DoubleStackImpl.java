@@ -1,6 +1,6 @@
 package DoubleStack;
 
-public interface DoubleStackInterface<T> {
+public interface DoubleStackImpl<T> {
     T peek();
     boolean isEmpty();
     T pop();
