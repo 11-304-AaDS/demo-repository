@@ -4,7 +4,7 @@ import java.util.*;
 
 // класс графа
 public class Graph {
-    private final int vertexesCount; // множество вершин
+    private final int vertexesCount; // количество вершин
     private final List<Edge> edges; // множество ребер
 
     Graph(int vertexesCount, List<Edge> edges) {
