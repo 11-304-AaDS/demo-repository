@@ -21,7 +21,7 @@ public class FixedPointFinder {
     }
 
     public static void main(String[] args) {
-        int[] arr = {-10, -5, 0, 3, 7, 9, 11, 12, 13};
+        int[] arr = {-10, -5, 0, 3, 7, 5, 11, 12, 13, 20, 25, 146, 215};
         int result = findFixedPoint(arr);
         if (result != -1) {
             System.out.println("Индекс: " + result);
