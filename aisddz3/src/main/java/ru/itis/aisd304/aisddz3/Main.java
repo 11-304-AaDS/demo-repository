@@ -25,9 +25,9 @@ public class Main {
         int[] arr2 = {-57, -48, 0, 1, 43, 64};
 
         if (findIndex(arr1) != -1) {
-            System.out.println("Элемент, совпавший со своим индексом: " + findIndex(arr1));
+            System.out.println("Индекс, совпавший со своим элементом: " + findIndex(arr1));
         } else {
-            System.out.println("Такого элемента нет");
+            System.out.println("Такого индекса нет");
         }
 
         if (findIndex(arr2) != -1) {
@@ -37,4 +37,3 @@ public class Main {
         }
     }
 }
-
