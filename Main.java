@@ -1,24 +1,29 @@
-package hw_queue;
+package hw;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        Queue<Integer> a = new Queue<>(5);
 
-        a.push(1);
-        a.push(14);
-        a.push(40);
-        a.push(11);
-        System.out.println("pop : " + a.pop());
-        a.push(52);
-        System.out.println();
+    public static void main(String[] args) {
+        int[] array = {100, 12, 4, 3, 14, 0, 7, 20};
+        int x = findElem(array);
 
-        System.out.println("peek : " + a.pop());
-        System.out.println("pop after peek : " + a.pop());
-        System.out.println();
+        if ( x!=-1 ) {
+            System.out.println("Найден элемент " + x);
+        } else {
+            System.out.println("Подобный элемент отсутсвует");
+        }
+    }
 
-        System.out.println("isEmpty : " + a.isEmpty());
-        a.pop();
-        a.pop();
-        System.out.println("isEmpty after some pops : " + a.isEmpty());
+    public static int findElem(int[] a) {
+        int left = 0;
+        int right = a.length - 1;
+
+        while ( left<=right ) {
+            int middle = (left + right)/2;
+
+            if ( a[middle]==middle ) { return middle; }
+            else if ( a[middle]<middle ) { left = middle+1; }
+            else { right = middle-1; }
+        }
+        return -1;
     }
 }
