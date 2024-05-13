@@ -4,44 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AVLTree implements Leavable{
+    public static int countOfAddingOperations = 0;
+    public static int countOfFindingOperations = 0;
+    public static int countOfDeletingOperations = 0;
     public Node root;
-    //так как при подсчете среднего мы знаем точное кол-во элементов и суммируем все элементы,
-    //можно добавлять независимые счетчики не суммируя их предварительно между собой (из методов insert, rebalance и rotate)
-    List<Integer> countOfAddingOperations = new ArrayList<>();
-    List<Integer> countOfFindingOperations = new ArrayList<>();
-    List<Integer> countOfDeletingOperations = new ArrayList<>();
 
-    AVLTree(Node root, List<Integer> add, List<Integer> find, List<Integer> delete) {
+
+    AVLTree(Node root) {
         this.root = root;
-        this.countOfAddingOperations = add;
-        this.countOfFindingOperations = find;
-        this.countOfDeletingOperations = delete;
     }
 
     public Node insert(Node root,int key) {
-        int counter = 0;
-        if (root == null) {
-            root = new Node(key);
-            counter++;
-        }
         if (root.key > key) {
             if (root.left == null) root.left = new Node(key);
             else root.left = insert(root.left, key);
-            counter++;
+            countOfAddingOperations++;
 
         } else {
             if (root.right == null) root.right = new Node(key);
             else root.right = insert(root.right, key);
-            counter++;
+            countOfAddingOperations++;
         }
-        counter++;
-        countOfAddingOperations.add(counter);
+        countOfAddingOperations++;
+        countOfAddingOperations++;
         return rebalanced(root);
     }
 
     public Node find(int key) {
         Node current = root;
         while (current != null) {
+            countOfFindingOperations++;
             if (current.key == key) {
                 break;
             }
@@ -51,9 +43,8 @@ public class AVLTree implements Leavable{
     }
 
     public void delete(int key) {
-        int counter = 0;
         Node node = find(key);
-        counter++;
+        countOfDeletingOperations++;
         if (node != null) {
             if (node.left == null & node.right == null) {
                 node = null;
@@ -63,39 +54,36 @@ public class AVLTree implements Leavable{
                 while (left != null) {
                     prev = left;
                     left = left.left;
-                    counter++;
+                    countOfDeletingOperations++;
                 }
                 node = prev;
                 prev = null;
             }
-            counter++;
+            countOfDeletingOperations++;
         }
-        counter++;
-        countOfDeletingOperations.add(counter);
+        countOfDeletingOperations++;
     }
 
     private Node rebalanced(Node node) {
-        int counter = 0;
         updateHeight(node);
-        counter++;
+        countOfAddingOperations++;
         int balance = height(node.right) - height(node.left);
         if (balance > 1) {
             if (height(node.right.left) > height(node.right.right)){
                 node.right = rotateRight(node.right);
-                counter++;
+                countOfAddingOperations++;
             }
             node = rotateLeft(node);
-            counter++;
+            countOfAddingOperations++;
         } else if (balance < -1) {
             if (height(node.left.right) > height(node.left.left)){
                 node.left = rotateLeft(node.left);
-                counter++;
+                countOfAddingOperations++;
             }
             node = rotateRight(node);
-            counter++;
+            countOfAddingOperations++;
         }
-        counter++;
-        countOfAddingOperations.add(counter);
+        countOfAddingOperations++;
         return node;
     }
 
@@ -106,7 +94,7 @@ public class AVLTree implements Leavable{
         root.left = node;
         updateHeight(node);
         updateHeight(root);
-        countOfAddingOperations.add(5);
+        countOfAddingOperations += 5;
         return root;
     }
 
@@ -116,7 +104,7 @@ public class AVLTree implements Leavable{
         root.right = node;
         updateHeight(node);
         updateHeight(root);
-        countOfAddingOperations.add(5);
+        countOfAddingOperations += 5;
         return root;
     }
 

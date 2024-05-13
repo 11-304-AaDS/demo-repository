@@ -11,70 +11,53 @@ public class Main {
         List<Integer> list = new ArrayList<>();
         Random generator = new Random();
 
-        List<Long> timeOfAdding = new ArrayList<>();
-        List<Integer> countOfAddingOperations = new ArrayList<>();
-
-        List<Long> timeOfFinding = new ArrayList<>();
-        List<Integer> countOfFindingOperations = new ArrayList<>(); //хранит результаты есть или нет в дереве
-
-        List<Long> timeOfDeleting = new ArrayList<>();
-        List<Integer> countOfDeletingOperations = new ArrayList<>();
+        long timeOfAdding = 0;
+        long timeOfFinding = 0;
+        long timeOfDeleting = 0;
 
         //добавляем файлы в лист (для проверки на повторение) и в дерево
         int b = generator.nextInt(100000);
         Node root = new Node(b);
-        AVLTree tree = new AVLTree(root, countOfAddingOperations, countOfFindingOperations, countOfDeletingOperations);
+        AVLTree tree = new AVLTree(root);
+
         for (int i = 0; i < 10000; i++) {
-            int a = generator.nextInt(100000);
+            int a = generator.nextInt(10000);
             if (!list.contains(a)) {
                 list.add(a);
                 long start = System.nanoTime();
-                tree.insert(root, a);
+                tree.insert(tree.root, a);
                 long stop = System.nanoTime();
-                timeOfAdding.add(stop - start);
+                timeOfAdding += stop - start;
             }
         }
 
         for(int i = 0; i < 100; i++) {
-            int a = generator.nextInt(10000);
+            int a = generator.nextInt(100000);
             long start = System.nanoTime();
             tree.find(a);
             long stop = System.nanoTime();
-            timeOfFinding.add(stop - start);
+            timeOfFinding += stop - start;
         }
 
         for (int i = 0; i < 1000; i++) {
-            int a = generator.nextInt(100000);
+            int a = generator.nextInt(10000);
             long start = System.nanoTime();
             tree.delete(a);
             long stop = System.nanoTime();
-            timeOfDeleting.add(stop - start);
+            timeOfDeleting += stop - start;
         }
 
+        System.out.println("Среднее время добавления элемента: " + timeOfAdding / (long)10000 + " миллисекунды");
 
-        Long sumOfAddingTime = timeOfAdding.stream()
-                .collect(Collectors.summingLong(Long::longValue));
-        System.out.println("Среднее время добавления элемента: " + sumOfAddingTime / (long)10000 + " миллисекунды");
+        System.out.println("Среднее количество оперций при добавлении элемента: " + AVLTree.countOfAddingOperations / 10000 + " операций");
 
-        Integer sumOfAddingOperations = countOfAddingOperations.stream()
-                .collect(Collectors.summingInt(Integer::intValue));
-        System.out.println("Среднее количество оперций при добавлении элемента: " + sumOfAddingOperations / 10000 + " операций");
+        System.out.println("Среднее время поиска элемента: " + timeOfFinding / (long)10000 + " миллисекунды");
 
-        Long sumOfFindingTime = timeOfFinding.stream()
-                .collect(Collectors.summingLong(Long::longValue));
-        System.out.println("Среднее время поиска элемента: " + sumOfFindingTime / (long)10000 + " миллисекунды");
+        System.out.println("Среднее количество оперций при поиске элемента: " + AVLTree.countOfFindingOperations / 10000 + " операций");
 
-        Integer sumOfFindingOperations = countOfFindingOperations.stream()
-                .collect(Collectors.summingInt(Integer::intValue));
-        System.out.println("Среднее количество оперций при поиске элемента: " + sumOfFindingOperations / 10000 + " операций");
+        System.out.println("Среднее время удаления элемента: " + timeOfDeleting / (long)10000 + " миллисекунды");
 
-        Long sumOfDeletingTime = timeOfDeleting.stream()
-                .collect(Collectors.summingLong(Long::longValue));
-        System.out.println("Среднее время удаления элемента: " + sumOfDeletingTime / (long)10000 + " миллисекунды");
-
-        Integer sumOfDeletingOperations = countOfDeletingOperations.stream()
-                .collect(Collectors.summingInt(Integer::intValue));
-        System.out.println("Среднее количество оперций при удалении элемента: " + sumOfDeletingOperations / 10000 + " операций");
+        System.out.println("Среднее количество оперций при удалении элемента: " + AVLTree.countOfDeletingOperations / 10000 + " операций");
 
     }
 }
