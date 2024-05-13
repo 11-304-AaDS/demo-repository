@@ -39,21 +39,20 @@ public class AVLTree implements Leavable{
         return rebalanced(root);
     }
 
-    public Node find(Node root, int key) {
-        if (root == null || root.key == key) {
-            return root;
+    public Node find(int key) {
+        Node current = root;
+        while (current != null) {
+            if (current.key == key) {
+                break;
+            }
+            current = current.key < key ? current.right : current.left;
         }
-
-        if (key < root.key) {
-            return find(root.left, key);
-        }
-
-        return find(root.right, key);
+        return current;
     }
 
     public void delete(int key) {
         int counter = 0;
-        Node node = find(root, key);
+        Node node = find(key);
         counter++;
         if (node != null) {
             if (node.left == null & node.right == null) {

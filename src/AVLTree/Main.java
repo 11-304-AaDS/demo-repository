@@ -38,7 +38,7 @@ public class Main {
         for(int i = 0; i < 100; i++) {
             int a = generator.nextInt(10000);
             long start = System.nanoTime();
-            tree.find(root, a);
+            tree.find(a);
             long stop = System.nanoTime();
             timeOfFinding.add(stop - start);
         }
