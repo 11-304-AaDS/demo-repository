@@ -3,10 +3,10 @@ package AVLTree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AVLTree implements Leavable{
-    public static int countOfAddingOperations = 0;
-    public static int countOfFindingOperations = 0;
-    public static int countOfDeletingOperations = 0;
+public class AVLTree implements Leavable {
+    public int countOfAddingOperations = 0;
+    public int countOfFindingOperations = 0;
+    public int countOfDeletingOperations = 0;
     public Node root;
 
 
@@ -14,7 +14,7 @@ public class AVLTree implements Leavable{
         this.root = root;
     }
 
-    public Node insert(Node root,int key) {
+    public Node insert(Node root, int key) {
         if (root.key > key) {
             if (root.left == null) root.left = new Node(key);
             else root.left = insert(root.left, key);
@@ -30,38 +30,45 @@ public class AVLTree implements Leavable{
         return rebalanced(root);
     }
 
-    public Node find(int key) {
-        Node current = root;
-        while (current != null) {
-            countOfFindingOperations++;
-            if (current.key == key) {
-                break;
-            }
-            current = current.key < key ? current.right : current.left;
-        }
-        return current;
+    public Node find(Node root, int key) {
+        if (root == null || root.key == key) return root;
+        countOfFindingOperations++;
+        if (root.key > key) return find(root.left, key);
+        countOfFindingOperations++;
+        return find(root.right, key);
     }
 
-    public void delete(int key) {
-        Node node = find(key);
+    public Node delete(Node root, int key) {
+        if (root == null) return root;
         countOfDeletingOperations++;
-        if (node != null) {
-            if (node.left == null & node.right == null) {
-                node = null;
-            } else {
-                Node left = node.right;
-                Node prev = left;
-                while (left != null) {
-                    prev = left;
-                    left = left.left;
-                    countOfDeletingOperations++;
-                }
-                node = prev;
-                prev = null;
-            }
+        if (key < root.key) {
             countOfDeletingOperations++;
+            root.left = delete(root.left, key);
+        } else if (key > root.key) {
+            countOfDeletingOperations++;
+            root.right = delete(root.right, key);
+        } else {
+            if (root.left == null)
+                return root.right;
+            else if (root.right == null)
+                return root.left;
+            countOfDeletingOperations++;
+            root.key = minValue(root.right);
+            root.right = delete(root.right, root.key);
+            countOfDeletingOperations += 2;
         }
         countOfDeletingOperations++;
+        return root;
+    }
+
+    private int minValue(Node root) {
+        int minv = root.key;
+        while (root.left != null) {
+            minv = root.left.key;
+            root = root.left;
+            countOfDeletingOperations += 2;
+        }
+        return minv;
     }
 
     private Node rebalanced(Node node) {
